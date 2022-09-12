@@ -45,15 +45,16 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
         IMAGE_TAG: "latest"
-        REPO_URL: public.ecr.aws/r4n1b7o3
+      
 
       run: |
         # Build a docker container and push it to ECR 
         echo "ECR Login"
         aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r4n1b7o3
-        docker build -t $REPO_URL/${{ secrets.REPO_NAME }}:$IMAGE_TAG .       
+        docker build -t suri .
+        docker tag suri:latest public.ecr.aws/r4n1b7o3/suri:latest
         echo "Pushing image to ECR..."
-        docker push $REPO_URL/${{ secrets.REPO_NAME }}:$IMAGE_TAG
+        docker push public.ecr.aws/r4n1b7o3/suri:latest
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
   Deployment_In_Dev_Environment:
