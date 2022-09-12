@@ -5,7 +5,7 @@ on:
     branches: [ master ]
   push:
     branches: [ master ]
-#jobs:
+jobs:
   # This workflow contains a single job called "build"
  
 #name: AWS WORKFLOW
@@ -21,7 +21,7 @@ on:
     
   Build_and_Push_Image_to_ECR:
     name: build and push
-    needs: build
+    
     runs-on: ubuntu-latest
 
     steps:    
