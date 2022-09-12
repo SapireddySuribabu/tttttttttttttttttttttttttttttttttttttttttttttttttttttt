@@ -5,7 +5,7 @@ on:
     branches: [ master ]
   push:
     branches: [ master ]
-jobs:
+#jobs:
   # This workflow contains a single job called "build"
  
 #name: AWS WORKFLOW
